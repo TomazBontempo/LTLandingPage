@@ -1,0 +1,562 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* Ensure smooth scrolling */
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+h1 {
+  font-size: 28.8px;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: black;
+  background-color: rgb(0, 0, 0);
+}
+
+header {
+  background-color: #000000;
+  padding: 10px 0;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  overflow: hidden; /* Hide the scrollbar */
+  z-index: 1000; /* Ensure the header stays on top of other elements */
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  margin-top: auto;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  padding: 0px 50px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  line-height: 26px;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 0px 25px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover {
+  color: transparent; /* Make the text color transparent */
+  background: linear-gradient(
+    to right,
+    #82adff 30%,
+    #ab7ffd 70%
+  ); /* Apply gradient background */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text; /* Clip the background to the text */
+  opacity: 0.8;
+}
+
+/* Logo styles */
+.logo {
+  justify-content: start;
+  align-items: center;
+  display: flex;
+}
+.logo img {
+  height: 8vh;
+}
+
+/* Banner Section */
+.banner {
+  width: 100%;
+  height: 89.5vh;
+  margin-top: 100px;
+  padding-top: 2.5vh;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  background-image: url("/media/images/server.jpeg"); /* Add background image */
+  background-size: cover; /* Ensure the image covers the entire section */
+  background-position: center; /* Center the image */
+  position: relative; /* Establish a containing block for the overlay */
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Overlay color with transparency */
+  z-index: 0; /* Ensure the overlay is behind the content */
+}
+
+.banner > * {
+  position: relative;
+  z-index: 1; /* Ensure the content is above the overlay */
+}
+
+.banner .cta {
+  text-align: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.banner .cta a {
+  color: #ffffff;
+  background: #5e3ba1;
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.banner .cta a:hover {
+  background: #3b5fa1;
+}
+
+/* Video Grid Section */
+.video-grid {
+  display: flex;
+  height: 70vh;
+  background-color: #5e3ba1;
+  transform: skew(-10deg); /* Slant the video to the right */
+  padding: 0.5%;
+
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 2.5vh;
+}
+
+.video-section {
+  position: relative; /* Establishes a containing block for absolutely positioned children */
+  flex: 1; /* All videos take equal space */
+  overflow: hidden;
+}
+
+.video-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000000;
+  z-index: 1; /* Ensure the title is above the video */
+}
+
+.video-section video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%); /* Make the video black and white */
+  transition: filter 0.3s, transform 0.3s; /* Smooth transition for filter and transform */
+}
+
+.video-section video.playing {
+  filter: grayscale(0%); /* Remove the grayscale filter when playing */
+}
+
+.content {
+  position: absolute; /* Position relative to the nearest positioned ancestor */
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s; /* Smooth transition for opacity */
+}
+
+.video-section:hover video,
+.video-section:hover .content,
+.video-section video.playing + .content {
+  filter: grayscale(0%); /* Remove grayscale on hover */
+  opacity: 1; /* Show content on hover */
+}
+
+/* Vertical Divider  */
+.vertical-divider {
+  width: 0.5%;
+  background-color: #5e3ba1;
+}
+
+/* Benefits Section */
+.eev {
+  padding: 2.5vh;
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: center;
+  height: 89.6vh;
+  background: #3b7ca1;
+  color: #ffffff;
+  background-image: url("/media/images/aequipe.jpg"); /* Add background image */
+  background-size: cover; /* Ensure the image covers the entire section */
+  background-position: center; /* Center the image */
+  position: relative; /* Establish a containing block for the overlay */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+}
+
+.eev::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    59,
+    124,
+    161,
+    0.9
+  ); /* Overlay color with transparency */
+  z-index: 0; /* Ensure the overlay is behind the content */
+}
+
+.eev > * {
+  position: relative;
+  z-index: 1; /* Ensure the content is above the overlay */
+  color: #ffffff;
+}
+
+.eev h1 {
+  margin-bottom: 20px; /* Add space between h1 and the card */
+}
+
+.eev-text {
+  background-color: white;
+  color: black;
+  width: 100%;
+  padding: 20px 50px; /* Increase padding on left and right sides */
+  box-sizing: border-box;
+  text-align: left;
+  margin: 20px 0;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+  font-size: 1.2rem; /* Increase font size */
+}
+
+.eev-text p {
+  margin-bottom: 20px; /* Add space between paragraphs */
+}
+
+/* Contact Section */
+.contato {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5vh;
+  text-align: center;
+  height: 73.5vh;
+  background-color: #5e3ba1;
+  background-image: url("/media/images/contato-background.jpg"); /* Add background image */
+  background-size: cover; /* Ensure the image covers the entire section */
+  background-position: center; /* Center the image */
+  position: relative; /* Establish a containing block for the overlay */
+}
+
+.contato::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    94,
+    59,
+    161,
+    0.9
+  ); /* Overlay color with transparency */
+  z-index: 0; /* Ensure the overlay is behind the content */
+}
+
+.contato > * {
+  position: relative;
+  z-index: 1; /* Ensure the content is above the overlay */
+  color: #ffffff;
+}
+
+.contato p {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.contact-card {
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 15px;
+  padding: 20px;
+  display: inline-block;
+  text-align: center;
+  margin-top: 19px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+}
+
+.qrc {
+  display: block;
+  margin: auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.whatsapp-btn {
+  background: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+  text-align: center;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+}
+
+.whatsapp-btn:hover {
+  background: #1cb856;
+}
+
+footer {
+  color: #ffffff;
+  background-color: black;
+  height: 15vh;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ffffff;
+  padding-left: 1vh;
+}
+footer a:hover {
+  color: transparent; /* Make the text color transparent */
+  background: linear-gradient(
+    to right,
+    #82adff 30%,
+    #ab7ffd 70%
+  ); /* Apply gradient background */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  background-clip: text; /* Clip the background to the text */
+  opacity: 0.8;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Large devices (below 1056px) */
+@media only screen and (max-width: 1400px) {
+  .navbar {
+    padding: 0 40px;
+  }
+
+  .navbar ul li a {
+    padding: 10px 20px;
+  }
+
+  .banner {
+    height: auto;
+    margin-top: 80px;
+    background-size: 100% 100%; /* Ensure the background image fits 100% of the banner height */
+  }
+
+  .banner .cta {
+    text-align: center;
+    margin: 0px;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+  }
+
+  .video-grid {
+    height: 60vh;
+    transform: skew(-5deg);
+  }
+
+  .content {
+    font-size: 0.9rem;
+  }
+
+  .eev {
+    height: 80vh;
+    padding: 40px;
+  }
+
+  .contato {
+    height: 80vh;
+    padding: 40px;
+  }
+
+  footer {
+    height: 10vh;
+    padding: 40px;
+    text-align: center;
+  }
+}
+
+/* Adjust font size for .content class on displays below 1024px */
+@media only screen and (max-width: 1073px) {
+  .content {
+    font-size: 0.8rem;
+  }
+}
+
+/* Navbar changes for screens below 920px */
+@media only screen and (max-width: 928px) {
+  .navbar {
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .navbar ul {
+    display: none;
+  }
+
+  .content {
+    font-size: 0.7rem;
+  }
+}
+
+/* Medium devices (bellow 768px) */
+@media only screen and (max-width: 774px) {
+  .navbar {
+    padding: 0 30px;
+  }
+
+  .navbar ul li a {
+    padding: 10px 15px;
+  }
+
+  .banner h1 {
+    padding-top: 20px;
+  }
+
+  .video-grid {
+    flex-direction: column;
+    height: auto;
+    transform: none;
+    padding: 1%;
+  }
+
+  .content {
+    font-size: 1.1rem;
+  }
+
+  .eev {
+    height: auto;
+    padding: 30px;
+  }
+
+  .eev-text {
+    border: 3px solid black;
+  }
+
+  .contato {
+    height: auto;
+    padding: 36px;
+  }
+
+  footer {
+    height: auto;
+    padding: 30px;
+    text-align: center;
+  }
+}
+
+/* Small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar ul li a {
+    padding: 10px 0;
+  }
+
+  .logo img {
+    height: 6vh; /* Make the logo smaller */
+  }
+
+  .video-grid {
+    flex-direction: column;
+    height: auto;
+    transform: none;
+  }
+
+  .content {
+    font-size: 0.8rem;
+  }
+
+  .eev {
+    height: auto;
+    padding: 20px;
+  }
+
+  .contato {
+    height: auto;
+    padding: 40px;
+  }
+
+  .contato p {
+    font-size: 1rem;
+  }
+
+  footer {
+    height: auto;
+    padding: 20px;
+    text-align: center;
+  }
+}
