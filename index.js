@@ -96,6 +96,31 @@ window.addEventListener("wheel", (event) => {
   }, cooldownTime);
 });
 
+// Function to check if an element is in the middle of the viewport
+function isElementInViewportMiddle(el) {
+  const rect = el.getBoundingClientRect();
+  const windowHeight =
+    window.innerHeight || document.documentElement.clientHeight;
+  const middle = windowHeight / 2;
+  return rect.top <= middle && rect.bottom >= middle;
+}
+
+// Function to play/pause videos based on their position in the viewport
+function handleScroll() {
+  document.querySelectorAll(".video-section video").forEach((video) => {
+    if (isElementInViewportMiddle(video)) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+}
+
+// Add scroll event listener for screens below 774px
+if (window.innerWidth <= 774) {
+  window.addEventListener("scroll", handleScroll);
+}
+
 // Event listeners for video play/pause on hover
 document.querySelectorAll(".video-section video").forEach((video) => {
   video.addEventListener("mouseover", () => video.play());
