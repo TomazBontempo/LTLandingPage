@@ -179,10 +179,3 @@ if (window.innerWidth <= 744) {
     }
   });
 }
-
-// Function to toggle the navigation bar
-function toggleNavbar() {
-  const navbar = document.querySelector(".navbar");
-  const ul = navbar.querySelector("ul");
-  ul.style.display = ul.style.display === "flex" ? "none" : "flex";
-}
