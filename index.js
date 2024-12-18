@@ -92,90 +92,84 @@ if (window.innerWidth > 744) {
 
 // Behavior for screens <= 744px
 if (window.innerWidth <= 744) {
-  // Play the first video on page load or when scrolling back to the top
-  function playFirstVideo() {
-    const firstVideoSection = document.querySelector(".video-section");
-    if (firstVideoSection) {
-      const video = firstVideoSection.querySelector("video");
-      const content = firstVideoSection.querySelector(".content");
-      if (video) {
-        // Pause all other videos
-        document
-          .querySelectorAll(".video-section video")
-          .forEach((v, index) => {
-            if (index !== 0) {
-              v.pause();
-              v.classList.remove("playing");
-              const otherContent = v
-                .closest(".video-section")
-                .querySelector(".content");
-              otherContent.style.opacity = "0";
-            }
-          });
+  const videos = document.querySelectorAll(".video-section video");
+  const contents = document.querySelectorAll(".video-section .content");
 
-        video.play();
-        video.classList.add("playing");
-        content.style.opacity = "1";
-      }
+  // Function to reset all videos
+  function resetVideos() {
+    videos.forEach((video, index) => {
+      video.pause();
+      video.classList.remove("playing");
+      video.style.filter = "grayscale(100%)"; // Apply grayscale to all videos
+      contents[index].style.opacity = "0"; // Hide content
+    });
+  }
+
+  // Function to play the first video
+  function playFirstVideo() {
+    if (videos.length > 0) {
+      resetVideos(); // Ensure all other videos are reset
+      const firstVideo = videos[0];
+      const firstContent = contents[0];
+      firstVideo.play();
+      firstVideo.classList.add("playing");
+      firstVideo.style.filter = "grayscale(0%)"; // Remove grayscale
+      firstContent.style.opacity = "1"; // Show content
     }
   }
 
-  window.addEventListener("load", playFirstVideo);
-
   // Function to check if an element is in the middle of the viewport
-  function isElementInViewportMiddle(el) {
+  function isInViewportMiddle(el) {
     const rect = el.getBoundingClientRect();
-    const windowHeight =
-      window.innerHeight || document.documentElement.clientHeight;
-    const middle = windowHeight / 2;
+    const middle = window.innerHeight / 2;
     return rect.top <= middle && rect.bottom >= middle;
   }
 
   // Function to handle video playback based on scroll position
   function handleScroll() {
-    const videos = document.querySelectorAll(".video-section video");
     let isFirstVideoPlaying = false;
 
     videos.forEach((video, index) => {
-      const content = video.closest(".video-section").querySelector(".content");
-
-      if (isElementInViewportMiddle(video)) {
+      const content = contents[index];
+      if (isInViewportMiddle(video)) {
         if (index === 0) {
+          // Handle the first video
           isFirstVideoPlaying = true;
+          playFirstVideo();
+        } else if (!isFirstVideoPlaying) {
+          // Handle other videos if the first video is not playing
+          video.play();
+          video.classList.add("playing");
+          video.style.filter = "grayscale(0%)"; // Remove grayscale
+          content.style.opacity = "1"; // Show content
         }
-
-        video.play();
-        video.classList.add("playing");
-        content.style.opacity = "1";
       } else {
         video.pause();
         video.classList.remove("playing");
-        content.style.opacity = "0";
+        video.style.filter = "grayscale(100%)"; // Apply grayscale
+        content.style.opacity = "0"; // Hide content
       }
     });
 
-    // Ensure no other video plays while the first video is playing
+    // Ensure no other videos play when the first video is active
     if (isFirstVideoPlaying) {
       videos.forEach((video, index) => {
         if (index !== 0) {
           video.pause();
           video.classList.remove("playing");
-          const content = video
-            .closest(".video-section")
-            .querySelector(".content");
-          content.style.opacity = "0";
+          video.style.filter = "grayscale(100%)"; // Apply grayscale
+          contents[index].style.opacity = "0"; // Hide content
         }
       });
     }
   }
 
-  // Add scroll event listener
+  // Add event listeners
+  window.addEventListener("load", playFirstVideo); // Play the first video on page load
   window.addEventListener("scroll", () => {
     handleScroll();
-
-    // Check if the user has scrolled back to the top
     if (window.scrollY === 0) {
-      playFirstVideo();
+      playFirstVideo(); // Ensure the first video plays when scrolled to the top
     }
   });
 }
