@@ -128,12 +128,6 @@ if (window.innerWidth <= 744) {
       playFirstVideo();
     }
   });
-
-  // Prevent interaction with videos directly
-  document.querySelectorAll(".video-section video").forEach((video) => {
-    video.addEventListener("click", (e) => e.preventDefault());
-    video.addEventListener("touchstart", (e) => e.preventDefault());
-  });
 }
 
 // Function to toggle the navigation bar

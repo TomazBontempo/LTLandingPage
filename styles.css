@@ -488,6 +488,15 @@ footer a:hover {
     min-width: 100%;
   }
 
+  .video-section:hover video,
+  .video-section:hover .content {
+    filter: grayscale(100%); /* Keep grayscale on hover */
+  }
+
+  .video-section video {
+    pointer-events: none; /* Disable user interaction with videos */
+  }
+
   .content {
     font-size: 1.1rem;
   }
