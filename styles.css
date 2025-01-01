@@ -279,7 +279,10 @@ header {
 }
 
 .eev-text p {
+  text-align: justify;
+  text-justify: inter-word; /* Add justification for better readability */
   margin-bottom: 20px; /* Add space between paragraphs */
+  line-height: 1.6; /* Adjust line height for better readability */
 }
 
 /* Contact Section */
@@ -508,6 +511,10 @@ footer a:hover {
 
   .eev-text {
     border: 3px solid black;
+  }
+
+  .eev-text p {
+    hyphens: auto; /* Enable hyphenation */
   }
 
   .contato {
