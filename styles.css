@@ -407,7 +407,7 @@ footer a:hover {
 
   .banner {
     height: auto;
-    margin-top: 80px;
+    margin-top: 100px;
     background-size: 100% 100%; /* Ensure the background image fits 100% of the banner height */
   }
 
@@ -428,12 +428,12 @@ footer a:hover {
   }
 
   .eev {
-    height: 80vh;
+    height: auto;
     padding: 40px;
   }
 
   .contato {
-    height: 80vh;
+    height: auto;
     padding: 40px;
   }
 
