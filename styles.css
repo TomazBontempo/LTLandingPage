@@ -407,7 +407,7 @@ footer a:hover {
 
   .banner {
     height: auto;
-    margin-top: 100px;
+    margin-top: 80px;
     background-size: 100% 100%; /* Ensure the background image fits 100% of the banner height */
   }
 
@@ -424,21 +424,21 @@ footer a:hover {
   }
 
   .content {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
   }
 
   .eev {
-    height: auto;
+    height: 80vh;
     padding: 40px;
-  }
-
-  .eev-text {
-    border: 3px solid black;
   }
 
   .contato {
-    height: auto;
+    height: 80vh;
     padding: 40px;
+  }
+
+  .qrc {
+    max-width: 200px;
   }
 
   footer {
@@ -471,7 +471,7 @@ footer a:hover {
   }
 }
 
-/* Medium devices (below 768px) */
+/* Medium devices (bellow 768px) */
 @media only screen and (max-width: 774px) {
   .navbar {
     padding: 0 30px;
@@ -479,11 +479,6 @@ footer a:hover {
 
   .navbar ul li a {
     padding: 10px 15px;
-    color: red; /* Example: Change link color to red for screens below 774px */
-  }
-
-  .navbar ul li a:hover {
-    color: blue; /* Example: Change link color to blue on hover for screens below 774px */
   }
 
   .banner h1 {
