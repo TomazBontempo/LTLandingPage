@@ -568,6 +568,10 @@ footer a:hover {
     padding: 20px;
   }
 
+  .eev-text p {
+    font-size: 1rem;
+  }
+
   .contato {
     height: auto;
     padding: 40px;
