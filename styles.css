@@ -424,12 +424,16 @@ footer a:hover {
   }
 
   .content {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .eev {
     height: auto;
     padding: 40px;
+  }
+
+  .eev-text {
+    border: 3px solid black;
   }
 
   .contato {
@@ -467,7 +471,7 @@ footer a:hover {
   }
 }
 
-/* Medium devices (bellow 768px) */
+/* Medium devices (below 768px) */
 @media only screen and (max-width: 774px) {
   .navbar {
     padding: 0 30px;
@@ -475,6 +479,11 @@ footer a:hover {
 
   .navbar ul li a {
     padding: 10px 15px;
+    color: red; /* Example: Change link color to red for screens below 774px */
+  }
+
+  .navbar ul li a:hover {
+    color: blue; /* Example: Change link color to blue on hover for screens below 774px */
   }
 
   .banner h1 {
