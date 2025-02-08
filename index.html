@@ -48,6 +48,25 @@
 
       gtag("config", "AW-16858161182");
     </script>
+
+    <!-- Google Event snippet for conversion page -->
+    <script>
+      function gtag_report_conversion(url) {
+        console.log("gtag_report_conversion called with url:", url);
+        var callback = function () {
+          if (typeof url != "undefined") {
+            window.location = url;
+          }
+        };
+        gtag("event", "conversion", {
+          send_to: "AW-16858161182/yI9HCLq3uJoaEJ7AzOY-",
+          value: 1.0,
+          currency: "BRL",
+          event_callback: callback,
+        });
+        return false;
+      }
+    </script>
   </head>
   <body>
     <!-- Header -->
@@ -157,7 +176,10 @@
       </div>
 
       <div class="cta">
-        <a href="https://wa.me/+5521996340210" target="_blank"
+        <a
+          href="https://wa.me/+5521996340210"
+          target="_blank"
+          onclick="gtag_report_conversion('https://wa.me/+5521996340210');"
           >Entre em Contato</a
         >
       </div>
@@ -202,6 +224,7 @@
         class="whatsapp-btn"
         href="https://wa.me/+5521996340210"
         target="_blank"
+        onclick="gtag_report_conversion('https://wa.me/+5521996340210');"
         >WhatsApp</a
       >
     </div>
